@@ -1,13 +1,21 @@
 import React, { useState } from 'react'
+import { signInUser, signUpUser } from '../../services/user';
 
 export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const authInfo = (authType === 'signup') ?
+      await signUpUser({ email, password }) :
+      await signInUser({ email, password });
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           email address:
           <input 
