@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <>
@@ -9,18 +11,26 @@ export default function AuthForm() {
         <label>
           email address:
           <input 
+            id='email'
             type='email'  
             placeholder='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <label>
           password:
           <input 
+            id='password'
             type='password'
             placeholder='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button></button>
+        <button>
+          {authType === 'signup' ? <>sign-up</> : <>sign-in</>}
+        </button>
       </form>
       {
         authType === 'signup' ?
