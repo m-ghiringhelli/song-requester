@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { getSession, getUser, signInUser, signUpUser } from '../../services/user';
+import { getUser, signInUser, signUpUser } from '../../services/user';
 
 export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');
@@ -8,6 +10,10 @@ export default function AuthForm() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const auth = useAuth();
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: '/' } };
+  const isSignedIn = getUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +22,7 @@ export default function AuthForm() {
         await signUpUser({ email, password }) :
         await signInUser({ email, password });
       auth.setUser(authInfo.email);
+      history.replace(from);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -23,6 +30,7 @@ export default function AuthForm() {
 
   return (
     <>
+      {/* {isSignedIn && history.replace(from)} */}
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           email address:
