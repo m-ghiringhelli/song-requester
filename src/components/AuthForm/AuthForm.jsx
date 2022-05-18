@@ -56,6 +56,7 @@ export default function AuthForm() {
             <p onClick={() => setAuthType('signup')}>Click here to create an account</p>
           </>
       }
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   )
 }
