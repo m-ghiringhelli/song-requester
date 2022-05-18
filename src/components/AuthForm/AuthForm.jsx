@@ -5,12 +5,17 @@ export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authInfo = (authType === 'signup') ?
-      await signUpUser({ email, password }) :
-      await signInUser({ email, password });
+    try {
+      const authInfo = (authType === 'signup') ?
+        await signUpUser({ email, password }) :
+        await signInUser({ email, password });
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   }
 
   return (
