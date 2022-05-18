@@ -6,8 +6,6 @@ export function PrivateRoute({ children, ...rest }) {
   const auth = getUser();
   const location = useLocation();
 
-  console.log('auth', auth);
-
   return (
     <Route {...rest}>
       {auth ? (
