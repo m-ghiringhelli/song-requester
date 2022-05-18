@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { signInUser, signUpUser } from '../../services/user';
+import { useAuth } from '../../hooks/useAuth';
+import { getSession, getUser, signInUser, signUpUser } from '../../services/user';
 
 export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const auth = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,11 +15,13 @@ export default function AuthForm() {
       const authInfo = (authType === 'signup') ?
         await signUpUser({ email, password }) :
         await signInUser({ email, password });
+      auth.setUser(authInfo.email);
     } catch (error) {
       setErrorMessage(error.message);
     }
   }
-
+  console.log('user', auth.user);
+  
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
