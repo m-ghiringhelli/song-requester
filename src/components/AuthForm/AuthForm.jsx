@@ -20,8 +20,7 @@ export default function AuthForm() {
       setErrorMessage(error.message);
     }
   }
-  console.log('user', auth.user);
-  
+
   return (
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
