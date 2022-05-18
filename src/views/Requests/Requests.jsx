@@ -1,16 +1,11 @@
 import React from 'react'
-import { useRequests } from '../../hooks/useRequests'
+import RequestList from '../../components/Requests/RequestList';
 
 export default function Requests() {
-  const requests = useRequests();
 
   return (
     <div>
-      {requests.map((request) => (
-        <div key={request.id}>
-          <p>{request.title}</p>
-        </div>
-      ))}
+      <RequestList />
     </div>
   )
 }
