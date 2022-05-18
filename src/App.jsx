@@ -10,6 +10,7 @@ import Auth from "./views/Auth/Auth";
 import Requests from "./views/Requests/Requests";
 import { getUser } from './services/user';
 import RequestDetail from './components/Requests/RequestDetail';
+import EditRequest from './views/Requests/EditRequest';
 
 export default function App() {
   const user = getUser();
@@ -20,6 +21,9 @@ export default function App() {
         <Switch>
           <PrivateRoute exact path='/'>
             <Requests />
+          </PrivateRoute>
+          <PrivateRoute path='/requests/edit/:id'>
+            <EditRequest />
           </PrivateRoute>
           <PrivateRoute path='/requests/:id'>
             <RequestDetail />
