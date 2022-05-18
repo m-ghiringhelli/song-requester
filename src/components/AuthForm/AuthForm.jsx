@@ -13,7 +13,6 @@ export default function AuthForm() {
   const history = useHistory();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: '/' } };
-  const isSignedIn = getUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +29,6 @@ export default function AuthForm() {
 
   return (
     <>
-      {/* {isSignedIn && history.replace(from)} */}
       <form onSubmit={(e) => handleSubmit(e)}>
         <label>
           email address:
