@@ -11,6 +11,7 @@ import Requests from "./views/Requests/Requests";
 import { getUser } from './services/user';
 import RequestDetail from './components/Requests/RequestDetail';
 import EditRequest from './views/Requests/EditRequest';
+import AddRequest from './views/Requests/AddRequest';
 
 export default function App() {
   const user = getUser();
@@ -27,6 +28,9 @@ export default function App() {
           </PrivateRoute>
           <PrivateRoute path='/requests/:id'>
             <RequestDetail />
+          </PrivateRoute>
+          <PrivateRoute>
+            <AddRequest path='add'/>
           </PrivateRoute>
           <Route path='/login'>
             {
