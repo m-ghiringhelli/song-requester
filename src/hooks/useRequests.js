@@ -11,6 +11,7 @@ export function useRequests() {
 
   const { requests, dispatch } = context;
 
+  
   useEffect(() => {
     const loadRequests = async () => {
       try {
@@ -22,15 +23,16 @@ export function useRequests() {
     }
     loadRequests();
   }, []);
+  
+  const addRequest = async (request) => {
+    try {
+      const addedRequest = await insertRequest(request);
+      dispatch({ type: 'add', payload: addedRequest});
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  console.log('requests', requests);
 
-  // const addRequest = async (request) => {
-  //   try {
-  //     const addedRequest = await insertRequest(request);
-  //     dispatch({ type: 'add', payload: addedRequest});
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
-  return requests;
+  return { requests, addRequest };
 }

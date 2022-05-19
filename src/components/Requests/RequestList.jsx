@@ -4,8 +4,8 @@ import { useRequests } from '../../hooks/useRequests'
 import RequestItem from './RequestItem';
 
 export default function RequestList() {
-  const requests = useRequests();
-
+  const { requests } = useRequests();
+  
   return (
     <div>
       {requests.map((request) => (

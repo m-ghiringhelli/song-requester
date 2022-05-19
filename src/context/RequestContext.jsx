@@ -9,7 +9,7 @@ function reducer(requests, { type, payload }) {
     case 'reset':
       return payload;
     case 'add':
-      return payload;
+      return [payload, ...requests];
     default:
       throw Error(`I don't know how to ${type}`);
   }

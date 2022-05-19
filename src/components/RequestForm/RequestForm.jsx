@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
-export default function RequestForm() {
+export default function RequestForm({ onSubmit }) {
   const [title, setTitle] = useState('');
   const [request, setRequest] = useState('');
+  
   return (
     <div>
       <form>
