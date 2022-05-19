@@ -14,7 +14,7 @@ export function useRequests() {
   useEffect(() => {
     const loadRequests = async () => {
       try {
-        const { data } = await getRequests();
+        const data = await getRequests();
         dispatch({ type: 'reset', payload: data });
       } catch (error) {
         throw error.message;

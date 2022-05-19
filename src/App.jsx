@@ -29,8 +29,8 @@ export default function App() {
           <PrivateRoute path='/requests/:id'>
             <RequestDetail />
           </PrivateRoute>
-          <PrivateRoute>
-            <AddRequest path='add'/>
+          <PrivateRoute path='/add'>
+            <AddRequest/>
           </PrivateRoute>
           <Route path='/login'>
             {
