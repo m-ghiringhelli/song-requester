@@ -8,6 +8,8 @@ function reducer(requests, { type, payload }) {
   switch (type) {
     case 'reset':
       return payload;
+    case 'add':
+      return payload;
     default:
       throw Error(`I don't know how to ${type}`);
   }

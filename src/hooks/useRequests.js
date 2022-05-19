@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { RequestContext } from '../context/RequestContext';
-import { getRequests } from '../services/requests';
+import { getRequests, insertRequest } from '../services/requests';
 
 export function useRequests() {
   const context = useContext(RequestContext);
@@ -22,6 +22,15 @@ export function useRequests() {
     }
     loadRequests();
   }, []);
+
+  // const addRequest = async (request) => {
+  //   try {
+  //     const addedRequest = await insertRequest(request);
+  //     dispatch({ type: 'add', payload: addedRequest});
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
 
   return requests;
 }
