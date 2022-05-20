@@ -5,10 +5,11 @@ import { useRequests } from '../../hooks/useRequests'
 export default function RequestDetail() {
   const { id } = useParams();
   const { requests, loading } = useRequests();
+  // find the request that matches the page we're on
   const request = !loading && requests.find(element => {
     return element.id === +id;
   });
-  console.log('test', test);
+  // make the date readable
   const formatDate = (date) => {
     let newDate = new Date(date);
     newDate = String(newDate);

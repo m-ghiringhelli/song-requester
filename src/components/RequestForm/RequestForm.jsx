@@ -1,24 +1,15 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { useRequests } from '../../hooks/useRequests';
+import { useForm } from '../../hooks/useForm';
 import { getUser } from '../../services/user';
 
-export default function RequestForm() {
+export default function RequestForm({ handleSubmit }) {
   const [title, setTitle] = useState('');
   const [request, setRequest] = useState('');
   const { email } = getUser();
   const user_id = getUser().id;
   const submission = [{ title, request, user_id, email }];
-  const { addRequest } = useRequests();
-  const history = useHistory();
+  const { formState } = useForm();
 
-  const handleSubmit = (e, submission) => {
-    e.preventDefault();
-    addRequest(submission);
-    history.replace('/');
-    return;
-  }
 
   return (
     <div>
