@@ -1,6 +1,5 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { useRequests } from '../../hooks/useRequests'
 
 export default function RequestDetail() {
