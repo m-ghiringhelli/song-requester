@@ -1,8 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useRequests } from '../../hooks/useRequests'
-import DeleteButton from '../Buttons/DeleteButton';
-import EditButton from '../Buttons/EditButton';
+import DeleteButton from '../../components/Buttons/DeleteButton';
+import EditButton from '../../components/Buttons/EditButton';
 
 export default function RequestDetail() {
   const { requests, loading } = useRequests();

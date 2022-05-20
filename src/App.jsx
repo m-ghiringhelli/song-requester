@@ -9,7 +9,7 @@ import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import Auth from "./views/Auth/Auth";
 import Requests from "./views/Requests/Requests";
 import { getUser } from './services/user';
-import RequestDetail from './components/Requests/RequestDetail';
+import RequestDetail from './views/Requests/RequestDetail';
 import EditRequest from './views/Requests/EditRequest';
 import AddRequest from './views/Requests/AddRequest';
 
