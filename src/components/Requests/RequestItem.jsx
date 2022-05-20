@@ -5,9 +5,10 @@ import { getUser } from '../../services/user';
 
 export default function RequestItem({ request }) {
   const { email } = getUser();
-  const { id, title, user_email } = request;
+  const { id, title } = request;
+  const user_email = request.email;
   const isRequestCreator = email === user_email;
-  
+
   return (
     <div>
       <Link to={`/requests/${id}`}>

@@ -5,7 +5,6 @@ import RequestItem from './RequestItem';
 
 export default function RequestList() {
   const { requests, loading } = useRequests();
-  console.log('requests', requests);
   
   return (
     <div>
