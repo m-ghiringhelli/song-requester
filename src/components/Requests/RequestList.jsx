@@ -4,14 +4,15 @@ import { useRequests } from '../../hooks/useRequests'
 import RequestItem from './RequestItem';
 
 export default function RequestList() {
-  const { requests, loading, setLoading } = useRequests();
+  const { requests, loading } = useRequests();
+  console.log('requests', requests);
   
   return (
     <div>
       {loading ? <p>loading...</p> :
       requests.map((request) => (
         <div key={request.id}>
-          <RequestItem request={request} />
+          <RequestItem request={request}  />
         </div>
       ))}
     </div>

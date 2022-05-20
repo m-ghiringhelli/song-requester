@@ -1,24 +1,23 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { RequestContext } from '../context/RequestContext';
 import { getRequests, insertRequest } from '../services/requests';
 
 export function useRequests() {
-  const [loading, setLoading] = useState(true);
   const context = useContext(RequestContext);
   
   if (context === undefined) {
     throw new Error('you did not use useRequests inside a context provider');
   }
 
-  const { requests, dispatch } = context;
+  const { requests, dispatch, loading, setLoading } = context;
 
   
   useEffect(() => {
     const loadRequests = async () => {
       try {
         const data = await getRequests();
-        dispatch({ type: 'reset', payload: data });
         setLoading(false);
+        dispatch({ type: 'reset', payload: data });
       } catch (error) {
         throw error.message;
       }
@@ -28,7 +27,8 @@ export function useRequests() {
   
   const addRequest = async (request) => {
     try {
-      const addedRequest = await insertRequest(request);
+      const [addedRequest] = await insertRequest(request);
+      console.log('addedRequest', addedRequest);
       dispatch({ type: 'add', payload: addedRequest});
       setLoading(false);
     } catch (error) {

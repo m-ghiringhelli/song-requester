@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 
 export const RequestContext = createContext();
 
@@ -17,9 +17,15 @@ function reducer(requests, { type, payload }) {
 
 export function ProvideRequest({ children }) {
   const [requests, dispatch] = useReducer(reducer, initialState);
+  const [loading, setLoading] = useState();
 
   return (
-    <RequestContext.Provider value={{ requests, dispatch }}>
+    <RequestContext.Provider value={{ 
+      requests, 
+      dispatch, 
+      loading, 
+      setLoading 
+    }}>
       {children}
     </RequestContext.Provider>
   )

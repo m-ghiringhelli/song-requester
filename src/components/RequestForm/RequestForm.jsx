@@ -15,9 +15,9 @@ export default function RequestForm() {
 
   const handleSubmit = (e, submission) => {
     e.preventDefault();
-    const response = addRequest(submission);
+    addRequest(submission);
     history.replace('/');
-    return response;
+    return;
   }
 
   return (
