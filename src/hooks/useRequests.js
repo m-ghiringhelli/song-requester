@@ -28,7 +28,6 @@ export function useRequests() {
   const addRequest = async (request) => {
     try {
       const [addedRequest] = await insertRequest(request);
-      console.log('addedRequest', addedRequest);
       dispatch({ type: 'add', payload: addedRequest});
       setLoading(false);
     } catch (error) {
@@ -36,5 +35,9 @@ export function useRequests() {
     }
   }
 
-  return { requests, addRequest, loading, setLoading };
+  const deleteRequest = async (request) => {
+
+  }
+
+  return { requests, addRequest, addRequest, loading, setLoading };
 }
