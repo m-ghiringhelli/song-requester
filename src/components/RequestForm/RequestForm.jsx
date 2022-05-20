@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { useRequests } from '../../hooks/useRequests';
 import { getUser } from '../../services/user';
 
@@ -9,11 +11,12 @@ export default function RequestForm() {
   const user_id = getUser().id;
   const submission = [{ title, request, user_id, email }];
   const { addRequest } = useRequests();
+  const history = useHistory();
 
   const handleSubmit = (e, submission) => {
     e.preventDefault();
-    console.log('submission', submission);
     const response = addRequest(submission);
+    history.replace('/');
     return response;
   }
 

@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useRequests } from '../../hooks/useRequests'
 import RequestItem from './RequestItem';
 
 export default function RequestList() {
-  const { requests } = useRequests();
+  const { requests, loading, setLoading } = useRequests();
   
   return (
     <div>
-      {requests.map((request) => (
+      {loading ? <p>loading...</p> :
+      requests.map((request) => (
         <div key={request.id}>
           <RequestItem request={request} />
         </div>

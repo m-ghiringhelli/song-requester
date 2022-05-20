@@ -1,8 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RequestContext } from '../context/RequestContext';
 import { getRequests, insertRequest } from '../services/requests';
 
 export function useRequests() {
+  const [loading, setLoading] = useState(true);
   const context = useContext(RequestContext);
   
   if (context === undefined) {
@@ -17,6 +18,7 @@ export function useRequests() {
       try {
         const data = await getRequests();
         dispatch({ type: 'reset', payload: data });
+        setLoading(false);
       } catch (error) {
         throw error.message;
       }
@@ -26,14 +28,13 @@ export function useRequests() {
   
   const addRequest = async (request) => {
     try {
-      console.log('request', request);
       const addedRequest = await insertRequest(request);
-      console.log('addedRequest', addedRequest);
       dispatch({ type: 'add', payload: addedRequest});
+      setLoading(false);
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  return { requests, addRequest };
+  return { requests, addRequest, loading };
 }
