@@ -26,13 +26,14 @@ export function useRequests() {
   
   const addRequest = async (request) => {
     try {
+      console.log('request', request);
       const addedRequest = await insertRequest(request);
+      console.log('addedRequest', addedRequest);
       dispatch({ type: 'add', payload: addedRequest});
     } catch (error) {
       console.log(error.message);
     }
   }
-  console.log('requests', requests);
 
   return { requests, addRequest };
 }

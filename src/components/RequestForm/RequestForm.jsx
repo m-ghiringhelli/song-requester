@@ -1,12 +1,25 @@
 import React, { useState } from 'react'
+import { useRequests } from '../../hooks/useRequests';
+import { getUser } from '../../services/user';
 
-export default function RequestForm({ onSubmit }) {
+export default function RequestForm() {
   const [title, setTitle] = useState('');
   const [request, setRequest] = useState('');
-  
+  const { email } = getUser();
+  const user_id = getUser().id;
+  const submission = [{ title, request, user_id, email }];
+  const { addRequest } = useRequests();
+
+  const handleSubmit = (e, submission) => {
+    e.preventDefault();
+    console.log('submission', submission);
+    const response = addRequest(submission);
+    return response;
+  }
+
   return (
     <div>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e, submission)}>
         <label>
           a brief synopsis
           <input 

@@ -7,6 +7,6 @@ export async function getRequests() {
 }
 
 export async function insertRequest(request) {
-  const response = await client.from('requests').insert(request).single();
+  const response = await client.from('requests').insert(request);
   return parseData(response);
 }
