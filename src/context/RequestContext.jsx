@@ -17,8 +17,8 @@ function reducer(requests, { type, payload }) {
 
 export function ProvideRequest({ children }) {
   const [requests, dispatch] = useReducer(reducer, initialState);
-  const [loading, setLoading] = useState();
-
+  const [loading, setLoading] = useState(true);
+  
   return (
     <RequestContext.Provider value={{ 
       requests, 

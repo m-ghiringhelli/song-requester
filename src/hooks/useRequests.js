@@ -36,5 +36,5 @@ export function useRequests() {
     }
   }
 
-  return { requests, addRequest, loading };
+  return { requests, addRequest, loading, setLoading };
 }
