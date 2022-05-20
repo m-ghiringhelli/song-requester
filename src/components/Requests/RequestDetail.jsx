@@ -10,9 +10,28 @@ export default function RequestDetail() {
     return element.id === +id;
   });
 
+  console.log('request', request);
+  // {
+  //   "id": 1,
+  //   "created_at": "2022-05-18T22:25:27+00:00",
+  //   "user_id": "33ea754d-a930-425c-a519-3b06c5487c1f",
+  //   "title": "led zeppelin but ska",
+  //   "request": "it'd be cool if there was a song that was like stairway to heaven but there was a horn section and a skankin' bassline",
+  //   "email": "marcus@test.com"
+  // }
+
   return (
     <div>
-
+      {
+      request ? 
+      <div>
+        {console.log('request', request)}
+        <h1>{request.title}</h1>
+        <p>{request.request}</p>
+        <span>{request.email} {request.created_at}</span>
+      </div> :
+      <p>loading...</p>
+      }
     </div>
   )
 }
