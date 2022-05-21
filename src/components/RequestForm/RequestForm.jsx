@@ -7,11 +7,16 @@ export default function RequestForm({ handleSubmit, songRequest = {} }) {
   // const [request, setRequest] = useState('');
   const { email } = getUser();
   const user_id = getUser().id;
-  const submission = [{ title, request, user_id, email }];
   const { title = '', request = '' } = songRequest; 
   const { formState, handleChange } = useForm({ title, request });
-  console.log('formState', formState);
+  const submission = [{ 
+    title: formState.title, 
+    request: formState.request,
+    user_id, 
+    email 
+  }];
 
+  console.log('submission', submission);
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e, submission)}>
