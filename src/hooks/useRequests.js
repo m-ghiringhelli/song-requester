@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { RequestContext } from '../context/RequestContext';
 import { 
@@ -10,6 +11,8 @@ import {
 export function useRequests() {
   const context = useContext(RequestContext);
   const history = useHistory();
+  // const params = useParams();
+  // console.log('params', params);
   
   if (context === undefined) {
     throw new Error('you did not use useRequests inside a context provider');

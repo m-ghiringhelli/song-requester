@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm';
 import { getUser } from '../../services/user';
 
-export default function RequestForm({ handleSubmit, songRequest = {} }) {
-  // const [title, setTitle] = useState('');
-  // const [request, setRequest] = useState('');
+export default function RequestForm({ requestToEdit, handleSubmit, songRequest = {} }) {
   const { email } = getUser();
   const user_id = getUser().id;
-  const { title = '', request = '' } = songRequest; 
+  const { title = '', request = '' } = requestToEdit ? 
+    requestToEdit :
+    songRequest; 
   const { formState, handleChange } = useForm({ title, request });
   const submission = [{ 
     title: formState.title, 
@@ -15,8 +15,10 @@ export default function RequestForm({ handleSubmit, songRequest = {} }) {
     user_id, 
     email 
   }];
+  const [isEditing, setIsEditing] = useState(false);
 
-  console.log('submission', submission);
+  if (requestToEdit && !isEditing) setIsEditing(true)
+  
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e, submission)}>
@@ -26,7 +28,11 @@ export default function RequestForm({ handleSubmit, songRequest = {} }) {
             id='title'
             name='title'
             type='text'
-            value={formState.title}
+            value={
+              isEditing ?
+              requestToEdit.title :
+              formState.title
+            }
             onChange={handleChange}
           />
         </label>

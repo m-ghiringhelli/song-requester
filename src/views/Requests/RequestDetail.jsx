@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { useRequests } from '../../hooks/useRequests'
+import { useRequests } from '../../hooks/useRequests';
 import DeleteButton from '../../components/Buttons/DeleteButton';
 import EditButton from '../../components/Buttons/EditButton';
 import { useAuth } from '../../hooks/useAuth';
