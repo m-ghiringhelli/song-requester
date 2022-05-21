@@ -10,6 +10,8 @@ function reducer(requests, { type, payload }) {
       return payload;
     case 'add':
       return [payload, ...requests];
+    case 'delete':
+      return requests.filter((req) => req.id === payload.id);
     default:
       throw Error(`I don't know how to ${type}`);
   }

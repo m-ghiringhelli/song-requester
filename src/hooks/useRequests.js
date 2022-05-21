@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { RequestContext } from '../context/RequestContext';
 import { 
   getRequests, 
@@ -8,6 +9,7 @@ import {
 
 export function useRequests() {
   const context = useContext(RequestContext);
+  const history = useHistory();
   
   if (context === undefined) {
     throw new Error('you did not use useRequests inside a context provider');
@@ -31,8 +33,9 @@ export function useRequests() {
   
   const addRequest = async (request) => {
     try {
+      setLoading(true);
       const [addedRequest] = await insertRequest(request);
-      dispatch({ type: 'add', payload: addedRequest});
+      dispatch({ type: 'add', payload: addedRequest });
       setLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -41,7 +44,11 @@ export function useRequests() {
 
   const handleDelete = async (id) => {
     try {
+      setLoading(true);
       await deleteRequest(id);
+      dispatch({ type: 'delete', payload: id });
+      setLoading(false);
+      history.replace('/');
     } catch (error) {
       console.log(error.message);
     }
