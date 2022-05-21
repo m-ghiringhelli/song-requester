@@ -1,6 +1,10 @@
 import { useContext, useEffect } from 'react';
 import { RequestContext } from '../context/RequestContext';
-import { getRequests, insertRequest } from '../services/requests';
+import { 
+  getRequests, 
+  insertRequest,
+  deleteRequest
+} from '../services/requests';
 
 export function useRequests() {
   const context = useContext(RequestContext);
@@ -35,9 +39,19 @@ export function useRequests() {
     }
   }
 
-  const deleteRequest = async (request) => {
-
+  const handleDelete = async (id) => {
+    try {
+      await deleteRequest(id);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
-  return { requests, addRequest, addRequest, loading, setLoading };
+  return { 
+    requests, 
+    addRequest,
+    handleDelete,
+    loading, 
+    setLoading 
+  };
 }
