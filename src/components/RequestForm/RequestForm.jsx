@@ -2,25 +2,28 @@ import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm';
 import { getUser } from '../../services/user';
 
-export default function RequestForm({ requestToEdit, handleSubmit, songRequest = {} }) {
+export default function RequestForm({ 
+  requestToEdit, 
+  handleSubmit, 
+  songRequest = {},
+  formType
+}) {
   const { email } = getUser();
   const user_id = getUser().id;
-  const { title = '', request = '' } = requestToEdit ? 
-    requestToEdit :
-    songRequest; 
-  const { formState, handleChange } = useForm({ title, request });
+  const { title = '', request = '' } = requestToEdit
+  ? requestToEdit 
+  : songRequest;
+  const { formState, handleChange } = useForm({ title: title, request });
   const submission = [{ 
     title: formState.title, 
     request: formState.request,
     user_id, 
     email 
   }];
-  const [isEditing, setIsEditing] = useState(false);
-
-  if (requestToEdit && !isEditing) setIsEditing(true)
-  
+  console.log('formType', formType);
   return (
     <div>
+      <p>{`${formType} a song request`}</p>
       <form onSubmit={(e) => handleSubmit(e, submission)}>
         <label>
           a brief synopsis
@@ -28,11 +31,7 @@ export default function RequestForm({ requestToEdit, handleSubmit, songRequest =
             id='title'
             name='title'
             type='text'
-            value={
-              isEditing ?
-              requestToEdit.title :
-              formState.title
-            }
+            value={formState.title}
             onChange={handleChange}
           />
         </label>

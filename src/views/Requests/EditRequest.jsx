@@ -11,10 +11,17 @@ export default function EditRequest() {
   const request = requests && requests.find(element => {
     return element.id === +id;
   });
+  const { loading } = useRequests();
+  console.log('request from view', request);
+  
+  if (!request) return null;
 
   return (
-    <div>
-      <RequestForm requestToEdit={request} />
-    </div>
+    <>
+      <div>
+        <RequestForm requestToEdit={request} formType={'Edit'}/>
+      </div>
+    </>
   )
 }
+
