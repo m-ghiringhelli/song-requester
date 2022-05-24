@@ -22,7 +22,7 @@ export default function EditRequest() {
     return;
   }
 
-  if (requestUser !== loggedInUser) history.replace('/');
+  if (requestUser !== loggedInUser) history.replace(`/requests/${id}`);
   
   if (!request) return null;
 
