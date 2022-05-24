@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { RequestContext } from '../context/RequestContext';
 import { 
@@ -12,8 +11,6 @@ import {
 export function useRequests() {
   const context = useContext(RequestContext);
   const history = useHistory();
-  // const params = useParams();
-  // console.log('params', params);
   
   if (context === undefined) {
     throw new Error('you did not use useRequests inside a context provider');
@@ -21,6 +18,7 @@ export function useRequests() {
 
   const { requests, dispatch, loading, setLoading } = context;
   
+  // loads requests from supabase and sets in context
   useEffect(() => {
     const loadRequests = async () => {
       try {
@@ -34,6 +32,7 @@ export function useRequests() {
     loadRequests();
   }, []);
   
+  // adds request to supabase and add to context
   const addRequest = async (request) => {
     try {
       setLoading(true);
@@ -45,6 +44,7 @@ export function useRequests() {
     }
   }
 
+  // deletes request from supabase and removes from context
   const handleDelete = async (id) => {
     try {
       setLoading(true);
@@ -57,6 +57,7 @@ export function useRequests() {
     }
   }
 
+  // updates request in supabase and updates in context
   const handleUpdate = async (request, id) => {
     try {
       setLoading(true);

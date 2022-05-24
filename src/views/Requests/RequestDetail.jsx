@@ -1,9 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useRequests } from '../../hooks/useRequests';
+import { useAuth } from '../../hooks/useAuth';
 import DeleteButton from '../../components/Buttons/DeleteButton';
 import EditButton from '../../components/Buttons/EditButton';
-import { useAuth } from '../../hooks/useAuth';
 import CopyButton from '../../components/Buttons/CopyButton';
 
 export default function RequestDetail() {

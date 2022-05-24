@@ -6,9 +6,9 @@ import {
   Redirect
 } from 'react-router-dom';
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { getUser } from './services/user';
 import Auth from "./views/Auth/Auth";
 import Requests from "./views/Requests/Requests";
-import { getUser } from './services/user';
 import RequestDetail from './views/Requests/RequestDetail';
 import EditRequest from './views/Requests/EditRequest';
 import AddRequest from './views/Requests/AddRequest';

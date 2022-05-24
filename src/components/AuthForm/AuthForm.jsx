@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { getUser, signInUser, signUpUser } from '../../services/user';
+import { signInUser, signUpUser } from '../../services/user';
 
 export default function AuthForm() {
   const [authType, setAuthType] = useState('signup');

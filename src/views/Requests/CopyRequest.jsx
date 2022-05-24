@@ -1,8 +1,7 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useRequests } from '../../hooks/useRequests';
 import RequestForm from '../../components/RequestForm/RequestForm'
-import { useParams } from 'react-router-dom';
 
 export default function CopyRequest() {
   const history = useHistory();

@@ -1,9 +1,8 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useRequests } from '../../hooks/useRequests';
-import RequestForm from '../../components/RequestForm/RequestForm'
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import RequestForm from '../../components/RequestForm/RequestForm'
 
 export default function EditRequest() {
   const { requests, handleUpdate } = useRequests();
