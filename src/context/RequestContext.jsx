@@ -11,6 +11,10 @@ function reducer(requests, { type, payload }) {
       return payload;
     case 'add':
       return [payload, ...requests];
+    case 'update':
+      return requests.map((request) => 
+        request.id === payload.id ? payload : request
+      );
     case 'delete':
       return requests.filter((req) => req.id === payload.id);
     default:

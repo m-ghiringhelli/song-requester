@@ -61,6 +61,7 @@ export function useRequests() {
     try {
       setLoading(true);
       await updateRequest(request, id);
+      dispatch({ type: 'update', payload: request })
       setLoading(false);
       history.replace('/');
     } catch (error) {
