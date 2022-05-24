@@ -16,7 +16,7 @@ export default function () {
 
   return (
     <div>
-      <RequestForm handleSubmit={handleSubmit} />
+      <RequestForm handleSubmit={handleSubmit} formType={'Add'}/>
     </div>
   )
 }

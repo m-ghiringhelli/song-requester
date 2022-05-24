@@ -5,7 +5,8 @@ import { RequestContext } from '../context/RequestContext';
 import { 
   getRequests, 
   insertRequest,
-  deleteRequest
+  deleteRequest,
+  updateRequest
 } from '../services/requests';
 
 export function useRequests() {
@@ -56,10 +57,22 @@ export function useRequests() {
     }
   }
 
+  const handleUpdate = async (request, id) => {
+    try {
+      setLoading(true);
+      await updateRequest(request, id);
+      setLoading(false);
+      history.replace('/');
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   return { 
     requests, 
     addRequest,
     handleDelete,
+    handleUpdate,
     loading, 
     setLoading 
   };

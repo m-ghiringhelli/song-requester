@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { getUser } from '../../services/user';
 
@@ -10,6 +11,7 @@ export default function RequestForm({
 }) {
   const { email } = getUser();
   const user_id = getUser().id;
+  const { id } = useParams();
   const { title = '', request = '' } = requestToEdit
   ? requestToEdit 
   : songRequest;
@@ -20,11 +22,11 @@ export default function RequestForm({
     user_id, 
     email 
   }];
-  console.log('formType', formType);
+
   return (
     <div>
       <p>{`${formType} a song request`}</p>
-      <form onSubmit={(e) => handleSubmit(e, submission)}>
+      <form onSubmit={(e) => handleSubmit(e, submission, id)}>
         <label>
           a brief synopsis
           <input 

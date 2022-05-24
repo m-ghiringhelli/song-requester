@@ -13,6 +13,15 @@ export async function insertRequest(request) {
   return parseData(response);
 }
 
+export async function updateRequest(req, id) {
+  const [{ title, request }] = req;
+  const response = await client
+    .from('requests')
+    .update({ title, request })
+    .match({ id });
+  return parseData(response);
+}
+
 export async function deleteRequest(id) {
   const response = await client
     .from('requests')
