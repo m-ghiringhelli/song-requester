@@ -43,7 +43,7 @@ export default function RequestDetail() {
             <DeleteButton id={id} />
           </section> :
           <section>
-            <CopyButton />
+            <CopyButton id={id} />
           </section>
         }
       </div> :

@@ -12,6 +12,7 @@ import { getUser } from './services/user';
 import RequestDetail from './views/Requests/RequestDetail';
 import EditRequest from './views/Requests/EditRequest';
 import AddRequest from './views/Requests/AddRequest';
+import CopyRequest from './views/Requests/CopyRequest';
 
 export default function App() {
   const user = getUser();
@@ -25,6 +26,9 @@ export default function App() {
           </PrivateRoute>
           <PrivateRoute path='/requests/edit/:id'>
             <EditRequest />
+          </PrivateRoute>
+          <PrivateRoute path='/requests/copy/:id'>
+            <CopyRequest />
           </PrivateRoute>
           <PrivateRoute path='/requests/:id'>
             <RequestDetail />
